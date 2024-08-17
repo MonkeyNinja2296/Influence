@@ -5,9 +5,22 @@ const socketio = require("socket.io");
 const http = require("http");
 const port = 3000;
 
+
+
 const app = express();
 const server = http.createServer(app);
-const io = new socketio.Server(server);
+
+app.use(cors({
+    origin: "https://influence-d5g.pages.dev/",
+    methods: ["GET", "POST"]
+}));
+
+const io = new Server(server, {
+    cors: {
+        origin: "https://influence-d5g.pages.dev/",
+        methods: ["GET", "POST"]
+    }
+});
 
 // uses static site from /public
 app.use(express.static("public"));
